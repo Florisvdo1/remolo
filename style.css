@@ -1,0 +1,298 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  height: -webkit-fill-available;
+  min-height: -webkit-fill-available;
+  font-family: Arial, sans-serif;
+  background: #e0f7fa;
+  overflow: hidden;
+  touch-action: none;
+}
+
+body {
+  height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+body > * {
+  flex-shrink: 0;
+}
+
+/* Clouds Container and Rows */
+.clouds {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: -1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* Some spacing between rows */
+  padding: 5vh 0;
+}
+
+/* Common Cloud Row Styles */
+.clouds-row {
+  position: relative;
+  width: 300%;
+  height: 10vh;
+  opacity: 0.8;
+  background-repeat: repeat-x;
+  background-position: top left;
+  background-size: contain;
+}
+
+/* These data URLs or SVG placeholders simulate pixel-art style clouds. 
+   Replace with your own pixel-art cloud images if desired. */
+
+/* Pixel-art style cloud pattern (just an example shape) */
+.clouds-row1 {
+  background-image: url('data:image/svg+xml;utf8,<svg width="60" height="30" xmlns="http://www.w3.org/2000/svg"><rect width="60" height="30" fill="%23ffffff"/><ellipse cx="20" cy="15" rx="20" ry="10" fill="%23ffffff"/><ellipse cx="40" cy="15" rx="20" ry="10" fill="%23ffffff"/></svg>');
+  animation: moveCloudsRow1 30s linear infinite;
+  /* Top row might be slightly larger and move faster */
+  transform: scale(1.2);
+}
+
+.clouds-row2 {
+  background-image: url('data:image/svg+xml;utf8,<svg width="60" height="30" xmlns="http://www.w3.org/2000/svg"><rect width="60" height="30" fill="%23ffffff00"/><ellipse cx="30" cy="15" rx="18" ry="8" fill="%23ffffff"/></svg>');
+  animation: moveCloudsRow2 30s linear infinite;
+  /* Slightly smaller and different opacity for depth */
+  opacity: 0.7;
+  transform: scale(1.1);
+}
+
+.clouds-row3 {
+  background-image: url('data:image/svg+xml;utf8,<svg width="60" height="30" xmlns="http://www.w3.org/2000/svg"><rect width="60" height="30" fill="%23ffffff00"/><ellipse cx="15" cy="15" rx="15" ry="7" fill="%23ffffff"/><ellipse cx="45" cy="15" rx="15" ry="7" fill="%23ffffff"/></svg>');
+  animation: moveCloudsRow3 30s linear infinite;
+  transform: scale(1.15);
+  opacity: 0.8;
+}
+
+/* Row Animations:
+   Row 1: move to the RIGHT (15% over time)
+   Row 2: move to the LEFT (opposite direction)
+   Row 3: move to the RIGHT again, similar to Row 1 but can vary speed if needed.
+   
+   Adjust the animation durations and transform translations to achieve desired speeds.
+*/
+
+/* Move Row 1 to the right */
+@keyframes moveCloudsRow1 {
+  0% { transform: translateX(0) scale(1.2); }
+  100% { transform: translateX(15%) scale(1.2); }
+}
+
+/* Move Row 2 to the left */
+@keyframes moveCloudsRow2 {
+  0% { transform: translateX(0) scale(1.1); }
+  100% { transform: translateX(-15%) scale(1.1); }
+}
+
+/* Move Row 3 to the right */
+@keyframes moveCloudsRow3 {
+  0% { transform: translateX(0) scale(1.15); }
+  100% { transform: translateX(15%) scale(1.15); }
+}
+
+
+/* Header and Time */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1vh 2vw;
+  background: #8fd3ff;
+}
+h1 {
+  margin: 0;
+  font-size: 3vh;
+  color: #fff;
+}
+.time-display {
+  font-size: 2vh;
+  color: #fff;
+}
+
+/* Day Sections */
+.day-sections {
+  display: flex;
+  flex-direction: column;
+  padding: 1vh 2vw;
+  background: #ffffffcc;
+  gap: 1vh;
+  flex-shrink: 0;
+}
+.section-block h2 {
+  margin: 0;
+  font-size: 2.5vh;
+  color: #333;
+}
+.placeholder-row {
+  display: flex;
+  align-items: center;
+  gap: 2vw;
+  margin-top: 1vh;
+}
+.placeholder {
+  width: 8vh;
+  height: 8vh;
+  border: 0.3vh dashed #bdbdbd;
+  border-radius: 1vh;
+  background: #f5f5f5;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.placeholder.empty::after {
+  content: "?";
+  opacity: 0.8;
+  font-size: 3vh;
+}
+.placeholder.highlight {
+  border-color: #2196f3;
+  box-shadow: 0 0 1vh #2196f3;
+  transform: scale(1.05);
+}
+.add-btn {
+  width: 8vh;
+  height: 8vh;
+  border: none;
+  background: #ffffffcc;
+  border-radius: 1vh;
+  font-size: 3vh;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0.5vh #ccc;
+}
+.add-btn:hover, .add-btn:focus {
+  background: #fffee9;
+  outline: none;
+}
+
+/* Homework Button */
+.homework-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1vh 2vw;
+  padding: 1vh 2vw;
+  border: none;
+  border-radius: 1vh;
+  font-size: 2.5vh;
+  color: #fff;
+  background: #f44336;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.homework-btn.green {
+  background: #4caf50;
+  animation: wobble 1s infinite ease-in-out;
+}
+@keyframes wobble {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(5deg); }
+  75% { transform: rotate(-5deg); }
+}
+
+/* Search and Category */
+.search-container {
+  margin: 1vh 2vw;
+  flex-shrink: 0;
+}
+.search-bar {
+  width: 100%;
+  padding: 1vh;
+  font-size: 2vh;
+  border-radius: 1vh;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.category-nav {
+  display: flex;
+  justify-content: center;
+  gap: 2vw;
+  background: #ffffffcc;
+  padding: 1vh 2vw;
+  flex-shrink: 0;
+}
+.cat-btn {
+  font-size: 2vh;
+  background: #fff;
+  border: none;
+  border-radius: 1vh;
+  padding: 0.5vh 1vh;
+  cursor: pointer;
+}
+.cat-btn:hover, .cat-btn:focus {
+  background: #fffee9;
+  outline: none;
+}
+
+/* Emoji Deck */
+main {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffffcc;
+  padding: 1vh 2vw;
+  box-sizing: border-box;
+  overflow: hidden; /* ensure no scroll */
+}
+.emoji-deck {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 1vh;
+}
+.emoji-item {
+  font-size: 3vh;
+  cursor: grab;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 6vh;
+  height: 6vh;
+  border-radius: 1vh;
+  transition: background 0.2s, transform 0.2s;
+  touch-action: none;
+}
+.emoji-item:active {
+  cursor: grabbing;
+}
+.emoji-item:hover, .emoji-item:focus {
+  background: #fff9c4;
+  outline: none;
+}
+
+/* Dragging */
+.dragging {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+}
+.dragging.magnet {
+  transform: scale(1.2);
+  transition: transform 0.1s;
+}
+
+/* Focus Styles */
+:focus {
+  outline: 2px solid #2196f3;
+  outline-offset: 2px;
+}
