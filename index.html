@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Viewport meta with viewport-fit=cover for iOS full height -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <title>Emoji Planner</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <!-- Cloud Container with three distinct parallax rows -->
+  <div class="clouds" aria-hidden="true">
+    <div class="clouds-row clouds-row1"></div>
+    <div class="clouds-row clouds-row2"></div>
+    <div class="clouds-row clouds-row3"></div>
+  </div>
+
+  <header>
+    <h1>Emoji Planner</h1>
+    <div class="time-display" aria-label="Current time"></div>
+  </header>
+
+  <section class="day-sections" aria-label="Day time sections">
+    <div class="section-block" aria-label="Morning section">
+      <h2>Morning</h2>
+      <div class="placeholder-row">
+        <div class="placeholder empty" aria-label="Empty placeholder" tabindex="0"></div>
+        <button class="add-btn" aria-label="Add new placeholder">+</button>
+      </div>
+    </div>
+    <div class="section-block" aria-label="Midday section">
+      <h2>Midday</h2>
+      <div class="placeholder-row">
+        <div class="placeholder empty" aria-label="Empty placeholder" tabindex="0"></div>
+        <button class="add-btn" aria-label="Add new placeholder">+</button>
+      </div>
+    </div>
+    <div class="section-block" aria-label="Evening section">
+      <h2>Evening</h2>
+      <div class="placeholder-row">
+        <div class="placeholder empty" aria-label="Empty placeholder" tabindex="0"></div>
+        <button class="add-btn" aria-label="Add new placeholder">+</button>
+      </div>
+    </div>
+  </section>
+
+  <button class="homework-btn" aria-label="Toggle homework mode">Homework</button>
+
+  <div class="search-container" aria-label="Search and filter emojis">
+    <input type="text" class="search-bar" placeholder="Search emojis..." aria-label="Search emojis by name"/>
+  </div>
+
+  <nav class="category-nav" aria-label="Emoji categories">
+    <button class="cat-btn" data-category="all" aria-label="Show all emojis" tabindex="0">All</button>
+    <button class="cat-btn" data-category="food" aria-label="Show food emojis" tabindex="0">Food</button>
+    <button class="cat-btn" data-category="art" aria-label="Show art emojis" tabindex="0">Art</button>
+    <button class="cat-btn" data-category="tech" aria-label="Show tech emojis" tabindex="0">Tech</button>
+    <button class="cat-btn" data-category="travel" aria-label="Show travel emojis" tabindex="0">Travel</button>
+    <button class="cat-btn" data-category="objects" aria-label="Show object emojis" tabindex="0">Objects</button>
+  </nav>
+
+  <main aria-label="Emoji deck">
+    <div class="emoji-deck" aria-live="polite"></div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
